@@ -1,31 +1,60 @@
 import java.util.Random;
 
 public class homework1 {
-    public static void main(String[] args){
+
+    public static int randomI(int max){
         Random random = new Random();
-        int i = random.nextInt(2000);
-        System.out.println(i);
-        String str = Integer.toBinaryString(i);
-        System.out.println(str);
-        // System.out.println(n.length());
-        int n = Integer.toBinaryString(i).length();
-        System.out.println(n);
-        int[] m1 = new int[1];
-        System.out.println(m1.length);
-        for (int j=i;j<2010;j++){
-            if (j%n==0){
-                m1[0]=j;
-                System.out.println(m1[0]);
-                // System.out.println(j);
-                // int[] tmp = new int[m1.length+1];
-                // System.out.println(tmp.length);
-                // for (int k=0; k<tmp.length; k++) tmp[k]=m1[k];
-                // m1=tmp;
-                // m1[tmp.length]=j;
+        int res = random.nextInt(max);
+        return res;
+    }
 
-            }
+    public static int biggestPosition(int i){
+        return Integer.toBinaryString(i).length();
+    }
 
+    public static int[] arrayM1(int i, int n){
+        int counter1 = 0;
+        for (int j=i;j<Short.MAX_VALUE; j++) {
+            if (j%n==0)
+            counter1+=1;
         }
+        int[] array = new int[counter1];
+                int k = 0;
+        for (int j=i;j<Short.MAX_VALUE;j++){
+            if (j%n==0){
+                array[k]=j;
+                k+=1;
+            }
+        }
+        return array;
+    }
+
+    public static int[] arrayM2(int i, int n){
+        int counter1 = 0;
+        for (int j=Short.MIN_VALUE;j<i; j++) {
+            if (j%n==0)
+            counter1+=1;
+        }
+        int[] array = new int[counter1];
+                int k = 0;
+        for (int j=Short.MIN_VALUE;j<i; j++){
+            if (j%n==0){
+                array[k]=j;
+                k+=1;
+            }
+        }
+        return array;
+    }
+
+
+    public static void main(String[] args){
+        int i = randomI(2000);
+        System.out.println(i);
+        int n = biggestPosition(i);
+        System.out.println(n);
+
+        int[] m1 = arrayM1(i,n);
+        int[] m2 = arrayM2(i,n);
     }
 
 }
